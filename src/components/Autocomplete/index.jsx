@@ -44,18 +44,18 @@ const Autocomplete = ({ onProductSelected }) => {
         placeholder="Search for a product"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ul>
-        {suggestions && suggestions.slice(0,10).map((suggestion, index) => (
-          <Suggestion 
-            key={suggestion.id}
-            title={suggestion.title}
-            tabIndex={index}
-            id={suggestion.id}
-            onClick={(e) => handleSuggestionClick(e, suggestion.id)}
-            onKeyDown={(e) => handleSuggestionClick(e, suggestion.id)}
-          />
-        ))}
-      </ul>
+        <ul>
+          {suggestions && suggestions.slice(0,10).map((suggestion, index) => (
+            <Suggestion 
+              key={suggestion.id}
+              title={suggestion.title}
+              tabIndex={index}
+              id={suggestion.id}
+              onClick={(e) => handleSuggestionClick(e, suggestion.id)}
+              onKeyDown={(e) => handleSuggestionClick(e, suggestion.id)}
+            />
+          ))}
+        </ul>
     </div>
   );
 }
