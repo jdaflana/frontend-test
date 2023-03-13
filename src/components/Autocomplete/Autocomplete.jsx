@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { fetchSuggestions } from "../../utils/api";
+import { useDebounce } from "../../hooks/useDebounce"
 
 import "./Autocomplete.css";
 
-const Autocomplete = () => {
+const Autocomplete = ({ onProductSelected }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
     fetchSuggestions(searchTerm).then((_suggestions) =>
