@@ -20,6 +20,8 @@ const Autocomplete = ({ onProductSelected }) => {
         } catch (error) {
           console.error(`There was an error fetching suggestions. Error: ${error}`);
         }
+      } else {
+        setSuggestions([])
       }
     };
     getSearchSuggestions();
@@ -45,6 +47,7 @@ const Autocomplete = ({ onProductSelected }) => {
       <ul>
         {suggestions && suggestions.slice(0,10).map((suggestion, index) => (
           <Suggestion 
+            key={suggestion.id}
             title={suggestion.title}
             tabIndex={index}
             id={suggestion.id}
