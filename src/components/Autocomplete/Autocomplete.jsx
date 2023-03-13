@@ -11,10 +11,18 @@ const Autocomplete = ({ onProductSelected }) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    fetchSuggestions(searchTerm).then((_suggestions) =>
-      setSuggestions(_suggestions)
-    );
-  }, [searchTerm]);
+    const getSearchSuggestions = async () => {
+      if (debouncedSearchTerm) {
+        try {
+          const fetchedSuggestions = await fetchSuggestions(debouncedSearchTerm);
+          setSuggestions(fetchedSuggestions)
+        } catch (error) {
+          console.error(`There was an error fetching suggestions ${error}`);
+        }
+      }
+    };
+    getSearchSuggestions();
+  }, [searchTerm, debouncedSearchTerm]);
 
   return (
     <div className="search-container">
