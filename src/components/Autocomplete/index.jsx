@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { fetchSuggestions } from "../../utils/api";
-import { Suggestion } from "../Suggestion";
+import Suggestion from "../Suggestion"
 import { useDebounce } from "../../hooks/useDebounce"
 
 import "./Autocomplete.css";
@@ -25,6 +25,14 @@ const Autocomplete = ({ onProductSelected }) => {
     getSearchSuggestions();
   }, [searchTerm, debouncedSearchTerm]);
 
+  const handleSuggestionClick = (e) => {
+    if (e.key === "Enter" || e.type === "click") {
+      onProductSelected(e.target.id)
+      setSuggestions([])
+      setSearchTerm("")
+    }
+  }
+
   return (
     <div className="search-container">
       <input
@@ -34,7 +42,17 @@ const Autocomplete = ({ onProductSelected }) => {
         placeholder="Search for a product"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      {/* TODO: render search suggestions */}
+      <ul>
+        {suggestions && suggestions.slice(0,10).map((suggestion, index) => (
+          <Suggestion 
+            title={suggestion.title}
+            tabIndex={index}
+            id={suggestion.id}
+            onClick={handleSuggestionClick}
+            onKeyDown={handleSuggestionClick}
+          />
+        ))}
+      </ul>
     </div>
   );
 }

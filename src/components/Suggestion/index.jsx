@@ -1,7 +1,7 @@
 import React from "react";
 import "./Suggestion.css"
 
-const Suggestion = ({ tabIndex, id, title, onClick }) => {
+const Suggestion = ({ tabIndex = 0, id, title, onClick }) => {
   return (
     title && <li
       className="suggestion-list-item"
