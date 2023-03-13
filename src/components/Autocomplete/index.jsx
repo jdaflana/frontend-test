@@ -27,9 +27,9 @@ const Autocomplete = ({ onProductSelected }) => {
     getSearchSuggestions();
   }, [searchTerm, debouncedSearchTerm]);
 
-  const handleSuggestionClick = (e) => {
+  const handleSuggestionClick = (e, suggestionId) => {
     if (e.key === "Enter" || e.type === "click") {
-      onProductSelected(e.target.id)
+      onProductSelected(suggestionId)
       setSuggestions([])
       setSearchTerm("")
     }
@@ -51,8 +51,8 @@ const Autocomplete = ({ onProductSelected }) => {
             title={suggestion.title}
             tabIndex={index}
             id={suggestion.id}
-            onClick={handleSuggestionClick}
-            onKeyDown={handleSuggestionClick}
+            onClick={(e) => handleSuggestionClick(e, suggestion.id)}
+            onKeyDown={(e) => handleSuggestionClick(e, suggestion.id)}
           />
         ))}
       </ul>

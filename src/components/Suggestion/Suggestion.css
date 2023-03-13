@@ -6,6 +6,7 @@
 	background: #fff;
 	border-top: none;
 	text-align: left;
+	list-style: none;
 }
 
 .suggestion-list-item:focus,

@@ -9,10 +9,15 @@ const ProductDetail = ({ productId }) => {
 
   useEffect(() => {
     if (!productId) return;
-
-    fetchProductDetail(productId).then((productInfo) =>
-      setProductInfo(productInfo)
-    );
+    const getProductInfo = async () => {
+      try {
+        const fetchedProductInfo = await fetchProductDetail(productId);
+        setProductInfo(fetchedProductInfo)
+      } catch (error) {
+        console.error(`There was an error fetching the product info. Error: ${error}`);
+      }
+    }
+    getProductInfo()
   }, [productId]);
 
   const renderProductInfo = () => {
@@ -26,12 +31,12 @@ const ProductDetail = ({ productId }) => {
           <div className="row-body">{productInfo.title}</div>
         </div>
         <div className="row">
-          <div className="row-title">Name:</div>
+          <div className="row-title">Description:</div>
           <div className="row-body">{productInfo.description}</div>
         </div>
         <div className="row">
           <div className="row-title">Price:</div>
-          <div className="row-body">{productInfo.price}</div>
+          <div className="row-body">{`£${productInfo.price.toFixed(2)}`}</div>
         </div>
       </div>
     );
