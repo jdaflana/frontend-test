@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { fetchSuggestions } from "../../utils/api";
+import { Suggestion } from "../Suggestion";
 import { useDebounce } from "../../hooks/useDebounce"
 
 import "./Autocomplete.css";
@@ -17,7 +18,7 @@ const Autocomplete = ({ onProductSelected }) => {
           const fetchedSuggestions = await fetchSuggestions(debouncedSearchTerm);
           setSuggestions(fetchedSuggestions)
         } catch (error) {
-          console.error(`There was an error fetching suggestions ${error}`);
+          console.error(`There was an error fetching suggestions. Error: ${error}`);
         }
       }
     };

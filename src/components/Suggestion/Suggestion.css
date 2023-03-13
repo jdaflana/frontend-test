@@ -1,0 +1,14 @@
+.suggestion-list-item {
+    font-size: 0.9rem;
+	width: 100%;
+	padding: 1rem;
+    border: 1px solid #ccc;
+	background: #fff;
+	border-top: none;
+	text-align: left;
+}
+
+.suggestion-list-item:focus,
+.suggestion-list-item:hover {
+	background: #ccc;
+}
