@@ -9,6 +9,7 @@ const Suggestion = ({ tabIndex = 0, id, title, onClick }) => {
       onClick={onClick}
       onKeyDown={onClick}
       key={id}
+      data-cy={`suggestion-${tabIndex}`}
     >
       {title}
     </li>

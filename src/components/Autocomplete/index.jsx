@@ -43,6 +43,7 @@ const Autocomplete = ({ onProductSelected }) => {
         className="search-box"
         placeholder="Search for a product"
         onChange={(e) => setSearchTerm(e.target.value)}
+        data-cy="autocomplete-searchbox"
       />
         <ul>
           {suggestions && suggestions.slice(0,10).map((suggestion, index) => (

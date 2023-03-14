@@ -1,16 +1,19 @@
 import React from "react";
-import {render, screen} from '@testing-library/react'
+import { render, screen} from '@testing-library/react'
 
-import Autocomplete from "../components/Autocomplete/Autocomplete";
+import Autocomplete from "../components/Autocomplete";
 
-jest.mock("./utils/api");
+jest.mock("../utils/api");
 
-describe("Autocomplete", () => {
-  it("renders correctly", () => {
-    render(<Autocomplete />);
+describe("Given the application is loaded", () => {
+  describe("When the user is on the home page", () => {
 
-    const input = screen.getByRole('textbox', {placeholder: /search for a product/i})
-    
-    expect(input).toBeInTheDocument();
-  });
-});
+    it("Then auto complete component renders correctly", () => {
+      render(<Autocomplete />);
+  
+      const input = screen.getByRole('textbox', {placeholder: /search for a product/i})
+      
+      expect(input).toBeInTheDocument();
+    });
+  })
+})

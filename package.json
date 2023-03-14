@@ -13,8 +13,8 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "test": "react-scripts test",
-    "server": "json-server --watch db.json -p 3001"
+    "test": "cypress open",
+    "server": "json-server --host 0.0.0.0 --watch db.json -p 8080"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "cypress": "^12.7.0"
   }
 }
